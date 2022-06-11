@@ -11,6 +11,10 @@ const orderSchema = mongoose.Schema({
         required: true,
         ref : 'Image'
     }],
+    totalAmount: {
+        type: Number,
+        required: true
+    },
     isPaid: {
         type: Boolean,
         required: true,

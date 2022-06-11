@@ -9,12 +9,13 @@ const {
     deleteImage,
     searchImage
 } = require("../controllers/imageController");
+const { protect, admin } = require("../middleware/authMiddleware")
 
 router.get('/', getImages);
 router.get('/:id', getImageById);
-router.post('/', [upload.single('images'), addImage]);
+router.post('/', [protect, admin, upload.single('images'), addImage]);
 router.get('/search/:query', searchImage)
-router.put('/:id', updateImage);
-router.delete('/:id', deleteImage);
+router.put('/:id', [protect, admin, updateImage]);
+router.delete('/:id', [protect, admin, deleteImage]);
 
 module.exports = router;
